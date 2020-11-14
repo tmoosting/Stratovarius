@@ -47,6 +47,7 @@ public class WeatherController : MonoBehaviour
     public int cloudLessener;
     public int cloudColorStick;
     public int cloudNeighborAmount;
+    public bool resetColors;
     public Threshold cloudSpawnThreshold;
 
     [Header("Lists")]
@@ -179,8 +180,8 @@ public class WeatherController : MonoBehaviour
             //cloudLeft.GetComponent<SpriteRenderer>().color = cloudDark;
             //cloudRight.GetComponent<SpriteRenderer>().color = cloudDark;
 
-            //if (Random.Range(0, cloudColorStick) == 0)
-            //    ResetCloudColors();
+            if (Random.Range(0, cloudColorStick) == 0)
+                ResetCloudColors();
 
 
         }
@@ -193,7 +194,8 @@ public class WeatherController : MonoBehaviour
     }
     void ResetCloudColors()
     {
-        foreach (GameObject obj in cloudList)        
+        if (resetColors == true)
+          foreach (GameObject obj in cloudList)        
             obj.GetComponent<SpriteRenderer>().color = cloudDefault;        
     }
     void CheckForCloudSpawn()
