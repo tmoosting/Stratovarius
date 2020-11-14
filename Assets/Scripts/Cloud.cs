@@ -45,6 +45,20 @@ public class Cloud : MonoBehaviour
       //  StartCoroutine(ColorCountdown());
     }
 
+    public void ActivateSecondary(int indexInList)
+    {
+        float incrementPerIndex = 1f / (WeatherController.Instance.cloudZoneNeighborAmount - 1);
+
+        colorTint = incrementPerIndex * indexInList;
+      
+
+        if (colorTint < 0.3f)
+            colorTint = 0.3f;
+    //    GetComponent<SpriteRenderer>().color = new Color(colorTint, colorTint, colorTint, 255);
+        GetComponent<SpriteRenderer>().color = new Color(0.55f, 0.55f, 0.55f, 255);
+
+    }
+
     public IEnumerator ColorCountdown()
     {
         for (float i = colorTint; i <1 ; i+= WeatherController.Instance.cloudRestoreRate)
