@@ -22,12 +22,14 @@ public class WeatherController : MonoBehaviour
     public enum Threshold { Low, Mid, High}
 
     [Header("Ranges")]
-    public float lowRangeMin;
-    public float lowRangeMax;
-    public float midRangeMin;
-    public float midRangeMax;
-    public float hiRangeMin;
-    public float hiRangeMax;
+    public float subBaseMin;
+    public float subBaseMax;
+    public float midBassMin;
+    public float midBassMax;
+    public float lowMidMin;
+    public float lowMidMax;
+    public float hiMidMin;
+    public float hiMidMax;
 
     [Header("Thresholds")] // Going by multiplier 10, volume 0.5
     public float lowThreshold;
@@ -41,9 +43,10 @@ public class WeatherController : MonoBehaviour
     public Color cloudDarkest;
 
     [Header("Weather-Specific")] 
-    public float cloudTimer;
+    public float cloudRestoreRate;
     public int cloudLessener;
     public int cloudColorStick;
+    public int cloudNeighborAmount;
     public Threshold cloudSpawnThreshold;
 
     [Header("Lists")]
@@ -67,6 +70,8 @@ public class WeatherController : MonoBehaviour
     private float highestPeak = 0;
     private float highestPeakX = 0;
     private GameObject highestCloud; 
+    private GameObject nextHighestCloud;
+    private List<GameObject> foundClouds;
 
     private void Awake()
     {
@@ -78,7 +83,7 @@ public class WeatherController : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        SetHighValues();
+        FindHighValues();
         CheckForWeatherChanges();
         ResetHighValues();
     }
@@ -90,28 +95,52 @@ public class WeatherController : MonoBehaviour
                 cloudList.Add(child.gameObject);
     }
 
-    void SetHighValues()
+    void FindHighValues()
     {
+        // Find the highest peak and its xvalue     
         foreach (float xValue in Equalizer.Instance.GetFrequencyMap().Keys)
             if (Equalizer.Instance.GetFrequencyMap()[xValue] > highestPeak)
             {
                 highestPeakX = xValue;
                 highestPeak = Equalizer.Instance.GetFrequencyMap()[xValue];
             }
-        highestPeakX *= 22.5f;
-    
+        highestPeakX *= Equalizer.Instance.stretcher ;
+        highestPeakX -= Equalizer.Instance.stretcher  ;
+
+
+      foundClouds = new List<GameObject>();
+        // find the closest cloud to that xvalue
         float smallestDistance = 99999f;
-
-
         foreach (GameObject cloud in cloudList)
         {
-            float distance = Vector3.Distance(new Vector3(cloud.transform.localPosition.x, 0, 0), new Vector3(highestPeakX, 0, 0));
+            float distance = Vector2.Distance(new Vector2(cloud.transform.localPosition.x, 0), new Vector2(highestPeakX, 0));
             if (distance < smallestDistance)
             {
                 highestCloud = cloud;
                 smallestDistance = distance;
             }
         }
+        foundClouds.Add(highestCloud);
+
+        // find next set of closest clouds
+        for (int i = 0; i < cloudNeighborAmount; i++)
+        {
+            smallestDistance = 99999f;
+            foreach (GameObject cloud in cloudList)
+            {
+                if (foundClouds.Contains(cloud) == false)
+                {
+                    float distance = Vector2.Distance(new Vector2(cloud.transform.localPosition.x, 0), new Vector2(highestPeakX, 0));
+                    if (distance < smallestDistance)
+                    {
+                        nextHighestCloud = cloud;
+                        smallestDistance = distance;
+                    }
+                }
+            }
+            foundClouds.Add(nextHighestCloud);
+        }
+
     }
     void ResetHighValues()
     {
@@ -121,32 +150,38 @@ public class WeatherController : MonoBehaviour
 
     void CheckForWeatherChanges()
     {
-        CheckForCloudColors();
-        CheckForCloudSpawn();
+        ChangeCloudColors();
+     //    CheckForCloudSpawn();
     }
 
-    void CheckForCloudColors()
+    void ChangeCloudColors()
     {
-          
-     //   Debug.Log("highx: " + highestX + "   highestPeak: " + highestPeak +"   closecloud: " + closestCloud.transform.localPosition.x);
-      
+     //   Debug.Log(" amount " + foundClouds.Count);
+        //   Debug.Log("highx: " + highestX + "   highestPeak: " + highestPeak +"   closecloud: " + closestCloud.transform.localPosition.x);
+        if (highestPeak > lowThreshold)
+        {
+            foreach (GameObject cloudObj in foundClouds)
+            {
+                Cloud cloud = cloudObj.GetComponent<Cloud>();
+                cloud.ActivateCloud(foundClouds.IndexOf(cloudObj));
+            }
+        }
        
-            if (highestPeak > lowThreshold)
+       
+          
             {
             //  Debug.Log("MAX color changed! " + closestCloud.transform.localPosition.x);
-            highestCloud.GetComponent<SpriteRenderer>().color = cloudDarkest;
 
-            int cloudIndex = cloudList.IndexOf(highestCloud);
 
-            
-            GameObject cloudLeft = cloudList[cloudIndex - 1];
-            GameObject cloudRight = cloudList[cloudIndex + 1];
-            cloudLeft.GetComponent<SpriteRenderer>().color = cloudDark;
-            cloudRight.GetComponent<SpriteRenderer>().color = cloudDark;
+            //int cloudIndex = cloudList.IndexOf(highestCloud);            
+            //GameObject cloudLeft = cloudList[cloudIndex - 1];
+            //GameObject cloudRight = cloudList[cloudIndex + 1];
+            //cloudLeft.GetComponent<SpriteRenderer>().color = cloudDark;
+            //cloudRight.GetComponent<SpriteRenderer>().color = cloudDark;
 
-            if (Random.Range(0, cloudColorStick) == 0)            
-                ResetCloudColors();
-            
+            //if (Random.Range(0, cloudColorStick) == 0)
+            //    ResetCloudColors();
+
 
         }
 
@@ -165,17 +200,17 @@ public class WeatherController : MonoBehaviour
     {
         if (cloudSpawnThreshold == Threshold.Low)
         {
-            if (CheckRange(lowRangeMin, lowRangeMax, lowThreshold) == true)
+            if (CheckRange(subBaseMin, subBaseMax, lowThreshold) == true)
                 SpawnCloud();
         }
         else if (cloudSpawnThreshold == Threshold.Mid)
         {
-            if (CheckRange(lowRangeMin, lowRangeMax, midThreshold) == true)
+            if (CheckRange(subBaseMin, subBaseMax, midThreshold) == true)
                 SpawnCloud();
         }
         else if (cloudSpawnThreshold == Threshold.High)
         {
-            if (CheckRange(lowRangeMin, lowRangeMax, hiThreshold) == true)
+            if (CheckRange(subBaseMin, subBaseMax, hiThreshold) == true)
                 SpawnCloud();
         }
 

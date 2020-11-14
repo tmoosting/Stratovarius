@@ -17,6 +17,7 @@ public class Equalizer : MonoBehaviour
     [Header("Audio")]
     public int sampleRate;  
     public float heightMultiplier;
+    public float stretcher;
     public float yTester;
 
 
@@ -26,13 +27,9 @@ public class Equalizer : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        frequencyMap = new Dictionary<float,float>(); 
+        frequencyMap = new Dictionary<float,float>();
+        spectrum = new float[Equalizer.Instance.sampleRate];
 
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        spectrum = new float[Equalizer.Instance.sampleRate]; 
     }
 
     // Update is called once per frame
@@ -51,8 +48,7 @@ public class Equalizer : MonoBehaviour
         {
             frequencyMap.Add(Mathf.Log10(i), spectrum[i]);
         //   Debug.DrawLine(new Vector3(-Mathf.Log10(i - 1), (spectrum[i - 1] - 10) * heightMultiplier, 1), new Vector3(-Mathf.Log10(i), (spectrum[i] - 10) * heightMultiplier, 1), Color.green);
-                Debug.DrawLine(new Vector3(Mathf.Log10(i - 1)*22.5f, spectrum[i - 1] * 22.5f - 10, 1), new Vector3(Mathf.Log10(i) * 22.5f, spectrum[i] * 22.5f - 10, 1), Color.green);
-
+                Debug.DrawLine(new Vector3(Mathf.Log10(i - 1)*stretcher - (stretcher), spectrum[i - 1] * stretcher - 10, 1), new Vector3(Mathf.Log10(i) * stretcher - (stretcher), spectrum[i] * stretcher - 10, 1), Color.green);
         }
 
     }
