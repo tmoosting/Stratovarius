@@ -41,6 +41,7 @@ public class LightningController : MonoBehaviour
 
         if (highestBassPeak > WeatherController.Instance.lightningThreshold && highestMidPeak > WeatherController.Instance.lightningThreshold)
         {
+            if (Random.Range(0, WeatherController.Instance.lightningLessener) == 0)
             CreateBolt();
         }
 

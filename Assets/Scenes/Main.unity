@@ -8858,7 +8858,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1c7a26768cc072c40add2489086328df, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6ad6cdf2dca6f03438566967422d2480, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.511
   m_Pitch: 1
@@ -10704,7 +10704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c586eb4eea777e540ba8eb0258ac34dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preset: 1
+  preset: 2
   debugRange: 0
   showHeightIndicator: 1
   heightIndicatorHeight: 0
@@ -10724,14 +10724,14 @@ MonoBehaviour:
   rainThresholdPop: 0.05
   snowThresholdPop: 9
   lightningThresholdPop: 0.25
-  colorThresholdClassical: 0.04
-  rainThresholdClassical: 0.02
+  colorThresholdClassical: 0.02
+  rainThresholdClassical: 0.005
   snowThresholdClassical: 9
-  lightningThresholdClassical: 0.1
+  lightningThresholdClassical: 0.09
   cloudDefault: {r: 1, g: 1, b: 1, a: 1}
   cloudDark: {r: 0.3679245, g: 0.35577607, b: 0.35577607, a: 1}
   cloudDarkest: {r: 0, g: 0.0028598304, b: 0.09433961, a: 1}
-  cloudColorStick: 66
+  cloudColorStick: 44
   cloudNeighborAmount: 3
   cloudZoneNeighborAmount: 2
   zoneClouds: 1
@@ -10740,6 +10740,7 @@ MonoBehaviour:
   lightningDuration: 0.15
   lightningXOffset: -0.5
   lightningYOffset: 12
+  lightningLessener: 1
   cloudParent: {fileID: 2021142900}
   cloudSpawner: {fileID: 464720494}
   cloudPrefab: {fileID: 4504812251099308731, guid: 0da868249e4ddd54bb4f41da011b2d07, type: 3}

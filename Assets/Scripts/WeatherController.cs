@@ -75,6 +75,7 @@ public class WeatherController : MonoBehaviour
     public float lightningDuration;
     public float lightningXOffset;
     public float lightningYOffset; 
+    public int lightningLessener; // chance of 1 in variable to spawn 
 
     [Header("Parents")]
     public Transform cloudParent;
@@ -335,101 +336,82 @@ public class WeatherController : MonoBehaviour
             {
                 Cloud cloud = cloudObj.GetComponent<Cloud>();
                 cloud.ActivateCloud(foundClouds.IndexOf(cloudObj));
-            }
-        
-
-
-            {
-                //  Debug.Log("MAX color changed! " + closestCloud.transform.localPosition.x);
-
-
-                //int cloudIndex = cloudList.IndexOf(highestCloud);            
-                //GameObject cloudLeft = cloudList[cloudIndex - 1];
-                //GameObject cloudRight = cloudList[cloudIndex + 1];
-                //cloudLeft.GetComponent<SpriteRenderer>().color = cloudDark;
-                //cloudRight.GetComponent<SpriteRenderer>().color = cloudDark;
-
+            } 
           
-                    ResetCloudColors();
-
-
-            }
-
-            //else
-            //    ResetCloudColors();
-
+                    ResetCloudColors(); 
 
 
         }
-        void ResetCloudColors()
+    
+    }
+    void ResetCloudColors()
+    {
+        if (resetColors == true)
         {
-            if (resetColors == true)
+            foreach (GameObject obj in cloudList)
             {
-                foreach (GameObject obj in cloudList)
-                {
-                    if (Random.Range(0, cloudColorStick) == 0)
-                        obj.GetComponent<Cloud>().ResetCloudColor();
+                if (Random.Range(0, cloudColorStick) == 0)
+                    obj.GetComponent<Cloud>().ResetCloudColor();
 
-                }
             }
-                
         }
-        void CheckForCloudSpawn()
-        {
-            //if (cloudSpawnThreshold == Threshold.Low)
-            //{
-            //    if (CheckRange(subBassMin, subBassMax, lowThreshold) == true)
-            //        SpawnCloud();
-            //}
-            //else if (cloudSpawnThreshold == Threshold.Mid)
-            //{
-            //    if (CheckRange(subBassMin, subBassMax, midThreshold) == true)
-            //        SpawnCloud();
-            //}
-          
 
-        }
-        void SpawnCloud()
-        {
-            //if (Random.Range(0, cloudLessener) == 0)
-            //{
-            //    GameObject cloudObj = Instantiate(cloudPrefab);
-            //    cloudObj.transform.SetParent(cloudSpawner);
-            //    cloudObj.transform.localPosition = new Vector3(Random.Range(-40, 40), Random.Range(-3, 3), 0);
-            //    cloudObj.transform.localScale *= Random.Range(0.6f, 1f);
-            //    int randomNr = Random.Range(0, 4);
-            //    if (randomNr == 0)
-            //        cloudObj.GetComponent<SpriteRenderer>().sprite = cloudSprite1;
-            //    else if (randomNr == 1)
-            //        cloudObj.GetComponent<SpriteRenderer>().sprite = cloudSprite2;
-            //    else if (randomNr == 2)
-            //        cloudObj.GetComponent<SpriteRenderer>().sprite = cloudSprite3;
-            //    else if (randomNr == 3)
-            //        cloudObj.GetComponent<SpriteRenderer>().sprite = cloudSprite4;
-            //    else if (randomNr == 4)
-            //        cloudObj.GetComponent<SpriteRenderer>().sprite = cloudSprite5;
+    }
+    void CheckForCloudSpawn()
+    {
+        //if (cloudSpawnThreshold == Threshold.Low)
+        //{
+        //    if (CheckRange(subBassMin, subBassMax, lowThreshold) == true)
+        //        SpawnCloud();
+        //}
+        //else if (cloudSpawnThreshold == Threshold.Mid)
+        //{
+        //    if (CheckRange(subBassMin, subBassMax, midThreshold) == true)
+        //        SpawnCloud();
+        //}
 
-            //    float tint = Random.Range(80f, 240f);
-            //    cloudObj.GetComponent<SpriteRenderer>().color = new Color(tint, tint, tint, Random.Range(0.4f, 1f));
-            //}
 
-        }
-        bool CheckRange(float xLow, float xHigh, float threshold)
-        {
-            //float[] spectrum = Equalizer.Instance.GetSpectrum();
-            //float sumTotal = 0;
-            //foreach (float xValue in Equalizer.Instance.GetFrequencyMap().Keys)
-            //{
-            //    if (xValue >= xLow && xValue <= xHigh)
-            //    {
-            //        sumTotal += Equalizer.Instance.GetFrequencyMap()[xValue];
-            //    }
-            //}
-            //if (sumTotal > threshold)
-            //    return true;
+    }
+    void SpawnCloud()
+    {
+        //if (Random.Range(0, cloudLessener) == 0)
+        //{
+        //    GameObject cloudObj = Instantiate(cloudPrefab);
+        //    cloudObj.transform.SetParent(cloudSpawner);
+        //    cloudObj.transform.localPosition = new Vector3(Random.Range(-40, 40), Random.Range(-3, 3), 0);
+        //    cloudObj.transform.localScale *= Random.Range(0.6f, 1f);
+        //    int randomNr = Random.Range(0, 4);
+        //    if (randomNr == 0)
+        //        cloudObj.GetComponent<SpriteRenderer>().sprite = cloudSprite1;
+        //    else if (randomNr == 1)
+        //        cloudObj.GetComponent<SpriteRenderer>().sprite = cloudSprite2;
+        //    else if (randomNr == 2)
+        //        cloudObj.GetComponent<SpriteRenderer>().sprite = cloudSprite3;
+        //    else if (randomNr == 3)
+        //        cloudObj.GetComponent<SpriteRenderer>().sprite = cloudSprite4;
+        //    else if (randomNr == 4)
+        //        cloudObj.GetComponent<SpriteRenderer>().sprite = cloudSprite5;
 
-            return false;
-        }
+        //    float tint = Random.Range(80f, 240f);
+        //    cloudObj.GetComponent<SpriteRenderer>().color = new Color(tint, tint, tint, Random.Range(0.4f, 1f));
+        //}
+
+    }
+    bool CheckRange(float xLow, float xHigh, float threshold)
+    {
+        //float[] spectrum = Equalizer.Instance.GetSpectrum();
+        //float sumTotal = 0;
+        //foreach (float xValue in Equalizer.Instance.GetFrequencyMap().Keys)
+        //{
+        //    if (xValue >= xLow && xValue <= xHigh)
+        //    {
+        //        sumTotal += Equalizer.Instance.GetFrequencyMap()[xValue];
+        //    }
+        //}
+        //if (sumTotal > threshold)
+        //    return true;
+
+        return false;
     }
     void ShowCloudZones()
     {
