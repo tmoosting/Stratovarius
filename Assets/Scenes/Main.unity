@@ -8858,7 +8858,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6ad6cdf2dca6f03438566967422d2480, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1c7a26768cc072c40add2489086328df, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.511
   m_Pitch: 1
@@ -10704,7 +10704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c586eb4eea777e540ba8eb0258ac34dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preset: 2
+  preset: 1
   debugRange: 0
   showHeightIndicator: 1
   heightIndicatorHeight: 0
@@ -10718,22 +10718,22 @@ MonoBehaviour:
   hiMidMax: 3
   colorThresholdHeavyBass: 0.04
   rainThresholdHeavyBass: 0.15
-  snowThresholdHeavyBass: 9
+  snowThresholdHeavyBass: 0.008
   lightningThresholdHeavyBass: 0.15
   colorThresholdPop: 0.03
   rainThresholdPop: 0.05
-  snowThresholdPop: 9
+  snowThresholdPop: 0.008
   lightningThresholdPop: 0.25
   colorThresholdClassical: 0.02
   rainThresholdClassical: 0.008
-  snowThresholdClassical: 0.06
+  snowThresholdClassical: 0.008
   lightningThresholdClassical: 0.08
   cloudDefault: {r: 1, g: 1, b: 1, a: 1}
   cloudDark: {r: 0.3679245, g: 0.35577607, b: 0.35577607, a: 1}
   cloudDarkest: {r: 0, g: 0.0028598304, b: 0.09433961, a: 1}
   cloudColorStick: 44
   cloudNeighborAmount: 3
-  cloudZoneNeighborAmount: 2
+  cloudZoneNeighborAmount: 3
   zoneClouds: 1
   resetColors: 1
   cloudSpawnThreshold: 2

@@ -41,8 +41,7 @@ public class RainController : MonoBehaviour
                     totalMidZonesActivity += Equalizer.Instance.GetFrequencyMap()[xValue];
                 }
             }
-            float averageMidActivity = totalMidZonesActivity / locAmount;
-            Debug.Log("avg mid activity" + averageMidActivity);
+            float averageMidActivity = totalMidZonesActivity / locAmount; 
             if (averageMidActivity > WeatherController.Instance.snowThreshold)            
                 snowSystem.Play();            
             else
