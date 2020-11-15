@@ -42,10 +42,12 @@ public class RainController : MonoBehaviour
                 }
             }
             float averageMidActivity = totalMidZonesActivity / locAmount;
+            Debug.Log("avg mid activity" + averageMidActivity);
             if (averageMidActivity > WeatherController.Instance.snowThreshold)            
                 snowSystem.Play();            
             else
                 snowSystem.Stop();
+            totalMidZonesActivity = 0;
         }
         else
             snowSystem.Stop();
