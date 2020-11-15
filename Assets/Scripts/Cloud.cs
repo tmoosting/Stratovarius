@@ -10,8 +10,8 @@ public class Cloud : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (timedCloud == true)
-             Destroy(gameObject, WeatherController.Instance.cloudRestoreRate);
+        //if (timedCloud == true)
+        //     Destroy(gameObject, WeatherController.Instance.cloudRestoreRate);
     }
 
     // Update is called once per frame
@@ -34,6 +34,7 @@ public class Cloud : MonoBehaviour
 
         if (indexInList == 0)
         {
+          
            GetComponent<SpriteRenderer>().color = new Color (0,0,0,255); 
         }
         else
@@ -55,20 +56,13 @@ public class Cloud : MonoBehaviour
         if (colorTint < 0.3f)
             colorTint = 0.3f;
     //    GetComponent<SpriteRenderer>().color = new Color(colorTint, colorTint, colorTint, 255);
-        GetComponent<SpriteRenderer>().color = new Color(0.55f, 0.55f, 0.55f, 255);
+        GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.45f, 0.45f, 255);
 
     }
-
-    public IEnumerator ColorCountdown()
+    public void ResetCloudColor()
     {
-        for (float i = colorTint; i <1 ; i+= WeatherController.Instance.cloudRestoreRate)
-        {
-            
-            GetComponent<SpriteRenderer>().color = new Color(i, i, i, 255);
-            yield return null;
-        }
-        colorTint = 1;
-       
+        GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f, 255);
 
     }
+ 
 }

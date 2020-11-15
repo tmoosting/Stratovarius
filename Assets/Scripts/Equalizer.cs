@@ -17,8 +17,7 @@ public class Equalizer : MonoBehaviour
     [Header("Audio")]
     public int sampleRate;  
     public float heightMultiplier;
-    public float stretcher;
-    public float yTester;
+    public float stretcher; 
 
 
     private float[] spectrum ;
@@ -37,7 +36,8 @@ public class Equalizer : MonoBehaviour
     {
         AudioListener.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
 
-        Debug.DrawLine(new Vector3(0, yTester, 1), new Vector3(4, yTester, 1), Color.green);
+        if (WeatherController.Instance.showHeightIndicator == true)
+        Debug.DrawLine(new Vector3(0, WeatherController.Instance.heightIndicatorHeight*stretcher-10, 1), new Vector3(80, WeatherController.Instance.heightIndicatorHeight*stretcher-10, 1), Color.red);
 
 
         for (int i = 1; i < spectrum.Length - 1; i++)        

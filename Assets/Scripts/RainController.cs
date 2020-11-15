@@ -47,6 +47,8 @@ public class RainController : MonoBehaviour
             else
                 snowSystem.Stop();
         }
+        else
+            snowSystem.Stop();
     }
     public void SpawnRain()
     {
@@ -54,7 +56,7 @@ public class RainController : MonoBehaviour
         totalBassZonesActivity = 0;
         foreach (float xValue in Equalizer.Instance.GetFrequencyMap().Keys)
         {
-            if (xValue > WeatherController.Instance.subBaseMin && xValue < WeatherController.Instance.midBassMax)
+            if (xValue > WeatherController.Instance.subBassMin && xValue < WeatherController.Instance.midBassMax)
             {
                 locAmount++;
                 totalBassZonesActivity += Equalizer.Instance.GetFrequencyMap()[xValue];
