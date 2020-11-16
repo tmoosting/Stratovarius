@@ -10359,10 +10359,10 @@ MonoBehaviour:
   lightningThresholdPop: 0.25
   colorThresholdClassical: 0.02
   rainThresholdClassical: 0.008
-  snowThresholdClassical: 0.008
+  snowThresholdClassical: 0.01
   lightningThresholdClassical: 0.08
-  cloudColorStick: 44
-  cloudNeighborAmount: 3
+  cloudColorStick: 65
+  cloudNeighborAmount: 5
   cloudZoneNeighborAmount: 3
   zoneClouds: 1
   resetColors: 1
