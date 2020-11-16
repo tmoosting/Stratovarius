@@ -10355,15 +10355,12 @@ MonoBehaviour:
   lightningThresholdHeavyBass: 0.15
   colorThresholdPop: 0.03
   rainThresholdPop: 0.05
-  snowThresholdPop: 0.008
+  snowThresholdPop: 0.01
   lightningThresholdPop: 0.25
   colorThresholdClassical: 0.02
   rainThresholdClassical: 0.008
   snowThresholdClassical: 0.008
   lightningThresholdClassical: 0.08
-  cloudDefault: {r: 1, g: 1, b: 1, a: 1}
-  cloudDark: {r: 0.3679245, g: 0.35577607, b: 0.35577607, a: 1}
-  cloudDarkest: {r: 0, g: 0.0028598304, b: 0.09433961, a: 1}
   cloudColorStick: 44
   cloudNeighborAmount: 3
   cloudZoneNeighborAmount: 3
