@@ -57,11 +57,6 @@ public class WeatherController : MonoBehaviour
     public float lightningThresholdClassical;
      
 
-    [Header("Colors")]
-    public Color cloudDefault;
-    public Color cloudDark;
-    public Color cloudDarkest;
-
     [Header("Clouds")]
  //   public float cloudRestoreRate; 
     public int cloudColorStick; // 1 in value chance of colors resetting every frame
