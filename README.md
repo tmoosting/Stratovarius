@@ -1,5 +1,6 @@
 # Stratovarius
 ## A Music-Weather mapping tool
+Stratovarius is a special equalizer that takes any song in .mp3 or .wav format and maps weather patterns to the music: clouds, rain, snow and lightning. 
 
 ### Getting it working
 * Find the attached zip file, unzip into a folder.
