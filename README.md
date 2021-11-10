@@ -27,4 +27,4 @@ To get a sense of the program’s execution, find both the Equalizer and the Wea
 
 
 
-In collaboration with [Freek van Heerikhuize](https://github.com/Free-k)
+</sub>In collaboration with [Freek van Heerikhuize](https://github.com/Free-k)</sub>
