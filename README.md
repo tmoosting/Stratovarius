@@ -24,3 +24,7 @@ To get a sense of the program’s execution, find both the Equalizer and the Wea
 * The four ‘zones’, as described above, are defined under the header Ranges, each of which can be directly visualized by entering the range number (1,2,3,4) in the Debug Range field (0 means disabled).
 * The three presets’ relevant values are found under Threshold 1, 2, and 3. The minimum requirement for each weather phenomenon can be tweaked here.
 * Cloud and Lightning are separate headers each with several specific behavioral tweaks. Feel free to mess with these, especially during runtime.  
+
+
+
+In collaboration with [Freek van Heerikhuize](https://github.com/Free-k)
