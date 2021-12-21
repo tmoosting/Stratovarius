@@ -2,8 +2,9 @@
 ## A Music-Weather Mapping Tool
 Synesthesia: the transfiguration of senses. Stratovarius converts sound into weather. Give it any .mp3 or .wav song so that it maps pitch and volume data into cloud patterns and weather effects: rain, snow and lightning. 
 
-### Demo (.mkv)
-[Link](https://drive.google.com/file/d/1EY8I3Knvk_vnacbVdpzFNYOCKjZdGvwd/view?usp=sharing)
+### Demos (.mkv)
+[LUMIX - Monster](https://drive.google.com/file/d/1EY8I3Knvk_vnacbVdpzFNYOCKjZdGvwd/view?usp=sharing)
+[Beethoven](https://drive.google.com/file/d/1cNp_avJwun_HXvfzlZMqxy4l_eCwo-pF/view?usp=sharing)
 
 ### WebGL
 [Link](http://furion.net/stratovarius)
