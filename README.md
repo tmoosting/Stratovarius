@@ -29,4 +29,4 @@ Work is done in the Update() functions of the Equalizer and WeatherController sc
 
 
 
-</sub>In collaboration with [Freek van Heerikhuize](https://github.com/Free-k)</sub>
+</sub>In collaboration with Freek van H.</sub>
